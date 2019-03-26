@@ -1,0 +1,1334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GesviaturasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abastecimento_tb">
+          <Key>
+            <PropertyRef Name="idAbastecimento" />
+          </Key>
+          <Property Name="idAbastecimento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVeiculo" Type="int" />
+          <Property Name="DataAbastecimento" Type="date" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="Litros" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KmInicio" Type="bigint" />
+          <Property Name="KmFinais" Type="bigint" />
+          <Property Name="KmPercorridos" Type="bigint" />
+          <Property Name="Consumo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PrecoLitro" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Cliente_tb">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeCliente" Type="varchar(max)" />
+          <Property Name="DataNascimento" Type="date" />
+          <Property Name="DataRegistro" Type="datetime" />
+          <Property Name="RegistradoPor" Type="int" />
+          <Property Name="ActualizadoPor" Type="int" />
+          <Property Name="Telefone" Type="varchar" MaxLength="500" />
+          <Property Name="EnderecoResidencia" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="Observacoes" Type="text" />
+          <Property Name="Foto" Type="image" />
+        </EntityType>
+        <EntityType Name="Empresa_tb">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeEmpresa" Type="varchar" MaxLength="500" />
+          <Property Name="Endereco" Type="varchar" MaxLength="500" />
+          <Property Name="Nuit" Type="varchar" MaxLength="50" />
+          <Property Name="Telefone" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="LogoTipo" Type="image" />
+        </EntityType>
+        <EntityType Name="EntradaViatura_tb">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+          </Key>
+          <Property Name="idEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataRegistro" Type="datetime" />
+          <Property Name="RegistradoPor" Type="int" />
+          <Property Name="idSaida" Type="int" />
+          <Property Name="ActualizadoPor" Type="int" />
+        </EntityType>
+        <EntityType Name="Fluidos_tb">
+          <Key>
+            <PropertyRef Name="idFluido" />
+          </Key>
+          <Property Name="idFluido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeFluido" Type="varchar" MaxLength="50" />
+          <Property Name="UnidadeMedida" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FluidosManutencao_tb">
+          <Key>
+            <PropertyRef Name="idFluidoManutencao" />
+          </Key>
+          <Property Name="idFluidoManutencao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idFluido" Type="int" />
+          <Property Name="Quantidade" Type="int" />
+          <Property Name="ValorUnitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ValorTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="idManutencao" Type="int" />
+        </EntityType>
+        <EntityType Name="Manutencao_tb">
+          <Key>
+            <PropertyRef Name="idManutencao" />
+          </Key>
+          <Property Name="idManutencao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVeiculo" Type="int" />
+          <Property Name="idServico" Type="int" />
+          <Property Name="TipoManutencao" Type="varchar" MaxLength="50" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="DataManutencao" Type="date" />
+          <Property Name="KilometragemManutencao" Type="varchar" MaxLength="50" />
+          <Property Name="ValorManutencao" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HoraInicio" Type="varchar" MaxLength="50" />
+          <Property Name="HoraFim" Type="varchar" MaxLength="50" />
+          <Property Name="NivelTanque" Type="varchar" MaxLength="50" />
+          <Property Name="Observacoes" Type="text" />
+          <Property Name="idCliente" Type="int" />
+        </EntityType>
+        <EntityType Name="Marca_tb">
+          <Key>
+            <PropertyRef Name="idMarca" />
+          </Key>
+          <Property Name="idMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeMarca" Type="varchar(max)" />
+          <Property Name="DataRegistro" Type="datetime" />
+          <Property Name="RegistradoPor" Type="int" />
+          <Property Name="ActualizadoPor" Type="int" />
+        </EntityType>
+        <EntityType Name="PecasManutencao_tb">
+          <Key>
+            <PropertyRef Name="idPeca" />
+          </Key>
+          <Property Name="idPeca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" />
+          <Property Name="Quantidade" Type="int" />
+          <Property Name="ValorUnitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ValorTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="idManutencao" Type="int" />
+        </EntityType>
+        <EntityType Name="SaidaViatura_tb">
+          <Key>
+            <PropertyRef Name="idSaida" />
+          </Key>
+          <Property Name="idSaida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataSaida" Type="date" />
+          <Property Name="DataDevolucao" Type="date" />
+          <Property Name="DataRegistro" Type="datetime" />
+          <Property Name="RegistradoPor" Type="int" />
+          <Property Name="ActualizadoPor" Type="int" />
+          <Property Name="Diasdealerta" Type="int" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="idViatura" Type="int" />
+        </EntityType>
+        <EntityType Name="Servicos_tb">
+          <Key>
+            <PropertyRef Name="idServicos" />
+          </Key>
+          <Property Name="idServicos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeServico" Type="varchar" MaxLength="50" />
+          <Property Name="DescricaoServico" Type="text" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario_tb">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeCompleto" Type="varchar" MaxLength="50" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" />
+          <Property Name="DataNascimento" Type="date" />
+          <Property Name="Contacto" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Viatura_tb">
+          <Key>
+            <PropertyRef Name="idViaturas" />
+          </Key>
+          <Property Name="idViaturas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModeloViatura" Type="varchar(max)" />
+          <Property Name="AnoFabrico" Type="varchar" MaxLength="50" />
+          <Property Name="Matricula" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar(max)" />
+          <Property Name="DataRegistro" Type="datetime" />
+          <Property Name="RegistradoPor" Type="int" />
+          <Property Name="ActualizadoPor" Type="int" />
+          <Property Name="idMarca" Type="int" />
+          <Property Name="idFluido" Type="int" />
+          <Property Name="KmCadastro" Type="varchar" MaxLength="500" />
+          <Property Name="DestinoUso" Type="text" />
+          <Property Name="Foto" Type="image" />
+          <Property Name="EstadoViatura" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Gesviaturas.dbo.View_Abastecimento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Abastecimento">
+          <Key>
+            <PropertyRef Name="idViaturas" />
+            <PropertyRef Name="idAbastecimento" />
+          </Key>
+          <Property Name="idViaturas" Type="int" Nullable="false" />
+          <Property Name="Matricula" Type="varchar(max)" />
+          <Property Name="NomeFluido" Type="varchar" MaxLength="50" />
+          <Property Name="idAbastecimento" Type="int" Nullable="false" />
+          <Property Name="DataAbastecimento" Type="date" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="Litros" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KmInicio" Type="bigint" />
+          <Property Name="KmFinais" Type="bigint" />
+          <Property Name="KmPercorridos" Type="bigint" />
+          <Property Name="Consumo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PrecoLitro" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Gesviaturas.dbo.View_CarroMarca' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_CarroMarca">
+          <Key>
+            <PropertyRef Name="idMarca" />
+            <PropertyRef Name="idViaturas" />
+          </Key>
+          <Property Name="idMarca" Type="int" Nullable="false" />
+          <Property Name="idViaturas" Type="int" Nullable="false" />
+          <Property Name="NomeMarca" Type="varchar(max)" />
+          <Property Name="ModeloViatura" Type="varchar(max)" />
+          <Property Name="AnoFabrico" Type="varchar" MaxLength="50" />
+          <Property Name="Matricula" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar(max)" />
+          <Property Name="DataRegistro" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Gesviaturas.dbo.View_FluidosManutencao' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_FluidosManutencao">
+          <Key>
+            <PropertyRef Name="idFluidoManutencao" />
+            <PropertyRef Name="idFluido" />
+          </Key>
+          <Property Name="NomeFluido" Type="varchar" MaxLength="50" />
+          <Property Name="UnidadeMedida" Type="varchar" MaxLength="50" />
+          <Property Name="idFluidoManutencao" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" />
+          <Property Name="ValorUnitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ValorTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="idManutencao" Type="int" />
+          <Property Name="idFluido" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Gesviaturas.dbo.View_Manutencao' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Manutencao">
+          <Key>
+            <PropertyRef Name="idServicos" />
+            <PropertyRef Name="idManutencao" />
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idServicos" Type="int" Nullable="false" />
+          <Property Name="NomeServico" Type="varchar" MaxLength="50" />
+          <Property Name="idManutencao" Type="int" Nullable="false" />
+          <Property Name="idVeiculo" Type="int" />
+          <Property Name="TipoManutencao" Type="varchar" MaxLength="50" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="DataManutencao" Type="date" />
+          <Property Name="KilometragemManutencao" Type="varchar" MaxLength="50" />
+          <Property Name="ValorManutencao" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HoraInicio" Type="varchar" MaxLength="50" />
+          <Property Name="HoraFim" Type="varchar" MaxLength="50" />
+          <Property Name="NivelTanque" Type="varchar" MaxLength="50" />
+          <Property Name="Observacoes" Type="text" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="NomeCliente" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Gesviaturas.dbo.View_Saida' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Saida">
+          <Key>
+            <PropertyRef Name="idSaida" />
+            <PropertyRef Name="idViaturas" />
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="idMarca" />
+          </Key>
+          <Property Name="idSaida" Type="int" Nullable="false" />
+          <Property Name="idViaturas" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idMarca" Type="int" Nullable="false" />
+          <Property Name="DataSaida" Type="date" />
+          <Property Name="DataDevolucao" Type="date" />
+          <Property Name="NomeCliente" Type="varchar(max)" />
+          <Property Name="NomeMarca" Type="varchar(max)" />
+          <Property Name="ModeloViatura" Type="varchar(max)" />
+          <Property Name="AnoFabrico" Type="varchar" MaxLength="50" />
+          <Property Name="Matricula" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_Abastecimento_tb_Viatura_tb">
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="0..1" />
+          <End Role="Abastecimento_tb" Type="Self.Abastecimento_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viatura_tb">
+              <PropertyRef Name="idViaturas" />
+            </Principal>
+            <Dependent Role="Abastecimento_tb">
+              <PropertyRef Name="idVeiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntradaViatura_tb_SaidaViatura_tb">
+          <End Role="SaidaViatura_tb" Type="Self.SaidaViatura_tb" Multiplicity="0..1" />
+          <End Role="EntradaViatura_tb" Type="Self.EntradaViatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaidaViatura_tb">
+              <PropertyRef Name="idSaida" />
+            </Principal>
+            <Dependent Role="EntradaViatura_tb">
+              <PropertyRef Name="idSaida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FluidosManutencao_tb_Fluidos_tb">
+          <End Role="Fluidos_tb" Type="Self.Fluidos_tb" Multiplicity="0..1" />
+          <End Role="FluidosManutencao_tb" Type="Self.FluidosManutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fluidos_tb">
+              <PropertyRef Name="idFluido" />
+            </Principal>
+            <Dependent Role="FluidosManutencao_tb">
+              <PropertyRef Name="idFluido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FluidosManutencao_tb_Manutencao_tb">
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="0..1" />
+          <End Role="FluidosManutencao_tb" Type="Self.FluidosManutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Principal>
+            <Dependent Role="FluidosManutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manutencao_tb_Cliente_tb">
+          <End Role="Cliente_tb" Type="Self.Cliente_tb" Multiplicity="0..1" />
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente_tb">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Manutencao_tb">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manutencao_tb_Servicos_tb">
+          <End Role="Servicos_tb" Type="Self.Servicos_tb" Multiplicity="0..1" />
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicos_tb">
+              <PropertyRef Name="idServicos" />
+            </Principal>
+            <Dependent Role="Manutencao_tb">
+              <PropertyRef Name="idServico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PecasManutencao_tb_Manutencao_tb">
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="0..1" />
+          <End Role="PecasManutencao_tb" Type="Self.PecasManutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Principal>
+            <Dependent Role="PecasManutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaViatura_tb_Cliente_tb">
+          <End Role="Cliente_tb" Type="Self.Cliente_tb" Multiplicity="0..1" />
+          <End Role="SaidaViatura_tb" Type="Self.SaidaViatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente_tb">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="SaidaViatura_tb">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaViatura_tb_Viatura_tb">
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="0..1" />
+          <End Role="SaidaViatura_tb" Type="Self.SaidaViatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viatura_tb">
+              <PropertyRef Name="idViaturas" />
+            </Principal>
+            <Dependent Role="SaidaViatura_tb">
+              <PropertyRef Name="idViatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viatura_tb_Fluidos_tb">
+          <End Role="Fluidos_tb" Type="Self.Fluidos_tb" Multiplicity="0..1" />
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fluidos_tb">
+              <PropertyRef Name="idFluido" />
+            </Principal>
+            <Dependent Role="Viatura_tb">
+              <PropertyRef Name="idFluido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viatura_tb_Marca_tb">
+          <End Role="Marca_tb" Type="Self.Marca_tb" Multiplicity="0..1" />
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca_tb">
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="Viatura_tb">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GesviaturasModelStoreContainer">
+          <EntitySet Name="Abastecimento_tb" EntityType="Self.Abastecimento_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente_tb" EntityType="Self.Cliente_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa_tb" EntityType="Self.Empresa_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EntradaViatura_tb" EntityType="Self.EntradaViatura_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fluidos_tb" EntityType="Self.Fluidos_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FluidosManutencao_tb" EntityType="Self.FluidosManutencao_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manutencao_tb" EntityType="Self.Manutencao_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca_tb" EntityType="Self.Marca_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PecasManutencao_tb" EntityType="Self.PecasManutencao_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaidaViatura_tb" EntityType="Self.SaidaViatura_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicos_tb" EntityType="Self.Servicos_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario_tb" EntityType="Self.Usuario_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Viatura_tb" EntityType="Self.Viatura_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Abastecimento" EntityType="Self.View_Abastecimento" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Abastecimento].[idViaturas] AS [idViaturas], 
+    [View_Abastecimento].[Matricula] AS [Matricula], 
+    [View_Abastecimento].[NomeFluido] AS [NomeFluido], 
+    [View_Abastecimento].[idAbastecimento] AS [idAbastecimento], 
+    [View_Abastecimento].[DataAbastecimento] AS [DataAbastecimento], 
+    [View_Abastecimento].[DataRegisto] AS [DataRegisto], 
+    [View_Abastecimento].[Litros] AS [Litros], 
+    [View_Abastecimento].[KmInicio] AS [KmInicio], 
+    [View_Abastecimento].[KmFinais] AS [KmFinais], 
+    [View_Abastecimento].[KmPercorridos] AS [KmPercorridos], 
+    [View_Abastecimento].[Consumo] AS [Consumo], 
+    [View_Abastecimento].[PrecoLitro] AS [PrecoLitro], 
+    [View_Abastecimento].[Total] AS [Total]
+    FROM [dbo].[View_Abastecimento] AS [View_Abastecimento]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_CarroMarca" EntityType="Self.View_CarroMarca" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_CarroMarca].[idMarca] AS [idMarca], 
+    [View_CarroMarca].[idViaturas] AS [idViaturas], 
+    [View_CarroMarca].[NomeMarca] AS [NomeMarca], 
+    [View_CarroMarca].[ModeloViatura] AS [ModeloViatura], 
+    [View_CarroMarca].[AnoFabrico] AS [AnoFabrico], 
+    [View_CarroMarca].[Matricula] AS [Matricula], 
+    [View_CarroMarca].[Estado] AS [Estado], 
+    [View_CarroMarca].[DataRegistro] AS [DataRegistro]
+    FROM [dbo].[View_CarroMarca] AS [View_CarroMarca]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_FluidosManutencao" EntityType="Self.View_FluidosManutencao" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_FluidosManutencao].[NomeFluido] AS [NomeFluido], 
+    [View_FluidosManutencao].[UnidadeMedida] AS [UnidadeMedida], 
+    [View_FluidosManutencao].[idFluidoManutencao] AS [idFluidoManutencao], 
+    [View_FluidosManutencao].[Quantidade] AS [Quantidade], 
+    [View_FluidosManutencao].[ValorUnitario] AS [ValorUnitario], 
+    [View_FluidosManutencao].[ValorTotal] AS [ValorTotal], 
+    [View_FluidosManutencao].[idManutencao] AS [idManutencao], 
+    [View_FluidosManutencao].[idFluido] AS [idFluido]
+    FROM [dbo].[View_FluidosManutencao] AS [View_FluidosManutencao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Manutencao" EntityType="Self.View_Manutencao" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Manutencao].[idServicos] AS [idServicos], 
+    [View_Manutencao].[NomeServico] AS [NomeServico], 
+    [View_Manutencao].[idManutencao] AS [idManutencao], 
+    [View_Manutencao].[idVeiculo] AS [idVeiculo], 
+    [View_Manutencao].[TipoManutencao] AS [TipoManutencao], 
+    [View_Manutencao].[DataRegisto] AS [DataRegisto], 
+    [View_Manutencao].[DataManutencao] AS [DataManutencao], 
+    [View_Manutencao].[KilometragemManutencao] AS [KilometragemManutencao], 
+    [View_Manutencao].[ValorManutencao] AS [ValorManutencao], 
+    [View_Manutencao].[HoraInicio] AS [HoraInicio], 
+    [View_Manutencao].[HoraFim] AS [HoraFim], 
+    [View_Manutencao].[NivelTanque] AS [NivelTanque], 
+    [View_Manutencao].[Observacoes] AS [Observacoes], 
+    [View_Manutencao].[idCliente] AS [idCliente], 
+    [View_Manutencao].[NomeCliente] AS [NomeCliente]
+    FROM [dbo].[View_Manutencao] AS [View_Manutencao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Saida" EntityType="Self.View_Saida" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Saida].[idSaida] AS [idSaida], 
+    [View_Saida].[idViaturas] AS [idViaturas], 
+    [View_Saida].[idCliente] AS [idCliente], 
+    [View_Saida].[idMarca] AS [idMarca], 
+    [View_Saida].[DataSaida] AS [DataSaida], 
+    [View_Saida].[DataDevolucao] AS [DataDevolucao], 
+    [View_Saida].[NomeCliente] AS [NomeCliente], 
+    [View_Saida].[NomeMarca] AS [NomeMarca], 
+    [View_Saida].[ModeloViatura] AS [ModeloViatura], 
+    [View_Saida].[AnoFabrico] AS [AnoFabrico], 
+    [View_Saida].[Matricula] AS [Matricula]
+    FROM [dbo].[View_Saida] AS [View_Saida]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Abastecimento_tb_Viatura_tb" Association="Self.FK_Abastecimento_tb_Viatura_tb">
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+            <End Role="Abastecimento_tb" EntitySet="Abastecimento_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntradaViatura_tb_SaidaViatura_tb" Association="Self.FK_EntradaViatura_tb_SaidaViatura_tb">
+            <End Role="SaidaViatura_tb" EntitySet="SaidaViatura_tb" />
+            <End Role="EntradaViatura_tb" EntitySet="EntradaViatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FluidosManutencao_tb_Fluidos_tb" Association="Self.FK_FluidosManutencao_tb_Fluidos_tb">
+            <End Role="Fluidos_tb" EntitySet="Fluidos_tb" />
+            <End Role="FluidosManutencao_tb" EntitySet="FluidosManutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FluidosManutencao_tb_Manutencao_tb" Association="Self.FK_FluidosManutencao_tb_Manutencao_tb">
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+            <End Role="FluidosManutencao_tb" EntitySet="FluidosManutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manutencao_tb_Cliente_tb" Association="Self.FK_Manutencao_tb_Cliente_tb">
+            <End Role="Cliente_tb" EntitySet="Cliente_tb" />
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manutencao_tb_Servicos_tb" Association="Self.FK_Manutencao_tb_Servicos_tb">
+            <End Role="Servicos_tb" EntitySet="Servicos_tb" />
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PecasManutencao_tb_Manutencao_tb" Association="Self.FK_PecasManutencao_tb_Manutencao_tb">
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+            <End Role="PecasManutencao_tb" EntitySet="PecasManutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaViatura_tb_Cliente_tb" Association="Self.FK_SaidaViatura_tb_Cliente_tb">
+            <End Role="Cliente_tb" EntitySet="Cliente_tb" />
+            <End Role="SaidaViatura_tb" EntitySet="SaidaViatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaViatura_tb_Viatura_tb" Association="Self.FK_SaidaViatura_tb_Viatura_tb">
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+            <End Role="SaidaViatura_tb" EntitySet="SaidaViatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viatura_tb_Fluidos_tb" Association="Self.FK_Viatura_tb_Fluidos_tb">
+            <End Role="Fluidos_tb" EntitySet="Fluidos_tb" />
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viatura_tb_Marca_tb" Association="Self.FK_Viatura_tb_Marca_tb">
+            <End Role="Marca_tb" EntitySet="Marca_tb" />
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GesviaturasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente_tb">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="DateTime" Precision="0" />
+          <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+          <Property Name="RegistradoPor" Type="Int32" />
+          <Property Name="ActualizadoPor" Type="Int32" />
+          <Property Name="Telefone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EnderecoResidencia" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Observacoes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Manutencao_tb" Relationship="Self.FK_Manutencao_tb_Cliente_tb" FromRole="Cliente_tb" ToRole="Manutencao_tb" />
+          <NavigationProperty Name="SaidaViatura_tb" Relationship="Self.FK_SaidaViatura_tb_Cliente_tb" FromRole="Cliente_tb" ToRole="SaidaViatura_tb" />
+        </EntityType>
+        <EntityType Name="Empresa_tb">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeEmpresa" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Nuit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LogoTipo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EntradaViatura_tb">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+          </Key>
+          <Property Name="idEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+          <Property Name="RegistradoPor" Type="Int32" />
+          <Property Name="idSaida" Type="Int32" />
+          <Property Name="ActualizadoPor" Type="Int32" />
+          <NavigationProperty Name="SaidaViatura_tb" Relationship="Self.FK_EntradaViatura_tb_SaidaViatura_tb" FromRole="EntradaViatura_tb" ToRole="SaidaViatura_tb" />
+        </EntityType>
+        <EntityType Name="Fluidos_tb">
+          <Key>
+            <PropertyRef Name="idFluido" />
+          </Key>
+          <Property Name="idFluido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeFluido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnidadeMedida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FluidosManutencao_tb" Relationship="Self.FK_FluidosManutencao_tb_Fluidos_tb" FromRole="Fluidos_tb" ToRole="FluidosManutencao_tb" />
+          <NavigationProperty Name="Viatura_tb" Relationship="Self.FK_Viatura_tb_Fluidos_tb" FromRole="Fluidos_tb" ToRole="Viatura_tb" />
+        </EntityType>
+        <EntityType Name="FluidosManutencao_tb">
+          <Key>
+            <PropertyRef Name="idFluidoManutencao" />
+          </Key>
+          <Property Name="idFluidoManutencao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idFluido" Type="Int32" />
+          <Property Name="Quantidade" Type="Int32" />
+          <Property Name="ValorUnitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="idManutencao" Type="Int32" />
+          <NavigationProperty Name="Fluidos_tb" Relationship="Self.FK_FluidosManutencao_tb_Fluidos_tb" FromRole="FluidosManutencao_tb" ToRole="Fluidos_tb" />
+          <NavigationProperty Name="Manutencao_tb" Relationship="Self.FK_FluidosManutencao_tb_Manutencao_tb" FromRole="FluidosManutencao_tb" ToRole="Manutencao_tb" />
+        </EntityType>
+        <EntityType Name="Manutencao_tb">
+          <Key>
+            <PropertyRef Name="idManutencao" />
+          </Key>
+          <Property Name="idManutencao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVeiculo" Type="Int32" />
+          <Property Name="idServico" Type="Int32" />
+          <Property Name="TipoManutencao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="DataManutencao" Type="DateTime" Precision="0" />
+          <Property Name="KilometragemManutencao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ValorManutencao" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HoraInicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HoraFim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NivelTanque" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Observacoes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idCliente" Type="Int32" />
+          <NavigationProperty Name="Cliente_tb" Relationship="Self.FK_Manutencao_tb_Cliente_tb" FromRole="Manutencao_tb" ToRole="Cliente_tb" />
+          <NavigationProperty Name="FluidosManutencao_tb" Relationship="Self.FK_FluidosManutencao_tb_Manutencao_tb" FromRole="Manutencao_tb" ToRole="FluidosManutencao_tb" />
+          <NavigationProperty Name="Servicos_tb" Relationship="Self.FK_Manutencao_tb_Servicos_tb" FromRole="Manutencao_tb" ToRole="Servicos_tb" />
+          <NavigationProperty Name="PecasManutencao_tb" Relationship="Self.FK_PecasManutencao_tb_Manutencao_tb" FromRole="Manutencao_tb" ToRole="PecasManutencao_tb" />
+        </EntityType>
+        <EntityType Name="Marca_tb">
+          <Key>
+            <PropertyRef Name="idMarca" />
+          </Key>
+          <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeMarca" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+          <Property Name="RegistradoPor" Type="Int32" />
+          <Property Name="ActualizadoPor" Type="Int32" />
+          <NavigationProperty Name="Viatura_tb" Relationship="Self.FK_Viatura_tb_Marca_tb" FromRole="Marca_tb" ToRole="Viatura_tb" />
+        </EntityType>
+        <EntityType Name="PecasManutencao_tb">
+          <Key>
+            <PropertyRef Name="idPeca" />
+          </Key>
+          <Property Name="idPeca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantidade" Type="Int32" />
+          <Property Name="ValorUnitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="idManutencao" Type="Int32" />
+          <NavigationProperty Name="Manutencao_tb" Relationship="Self.FK_PecasManutencao_tb_Manutencao_tb" FromRole="PecasManutencao_tb" ToRole="Manutencao_tb" />
+        </EntityType>
+        <EntityType Name="SaidaViatura_tb">
+          <Key>
+            <PropertyRef Name="idSaida" />
+          </Key>
+          <Property Name="idSaida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataSaida" Type="DateTime" Precision="0" />
+          <Property Name="DataDevolucao" Type="DateTime" Precision="0" />
+          <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+          <Property Name="RegistradoPor" Type="Int32" />
+          <Property Name="ActualizadoPor" Type="Int32" />
+          <Property Name="Diasdealerta" Type="Int32" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="idViatura" Type="Int32" />
+          <NavigationProperty Name="Cliente_tb" Relationship="Self.FK_SaidaViatura_tb_Cliente_tb" FromRole="SaidaViatura_tb" ToRole="Cliente_tb" />
+          <NavigationProperty Name="EntradaViatura_tb" Relationship="Self.FK_EntradaViatura_tb_SaidaViatura_tb" FromRole="SaidaViatura_tb" ToRole="EntradaViatura_tb" />
+          <NavigationProperty Name="Viatura_tb" Relationship="Self.FK_SaidaViatura_tb_Viatura_tb" FromRole="SaidaViatura_tb" ToRole="Viatura_tb" />
+        </EntityType>
+        <EntityType Name="Servicos_tb">
+          <Key>
+            <PropertyRef Name="idServicos" />
+          </Key>
+          <Property Name="idServicos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeServico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DescricaoServico" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Manutencao_tb" Relationship="Self.FK_Manutencao_tb_Servicos_tb" FromRole="Servicos_tb" ToRole="Manutencao_tb" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuario_tb">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCompleto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="DateTime" Precision="0" />
+          <Property Name="Contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Viatura_tb">
+          <Key>
+            <PropertyRef Name="idViaturas" />
+          </Key>
+          <Property Name="idViaturas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModeloViatura" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AnoFabrico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Matricula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+          <Property Name="RegistradoPor" Type="Int32" />
+          <Property Name="ActualizadoPor" Type="Int32" />
+          <Property Name="idMarca" Type="Int32" />
+          <Property Name="idFluido" Type="Int32" />
+          <Property Name="KmCadastro" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DestinoUso" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EstadoViatura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Fluidos_tb" Relationship="Self.FK_Viatura_tb_Fluidos_tb" FromRole="Viatura_tb" ToRole="Fluidos_tb" />
+          <NavigationProperty Name="Marca_tb" Relationship="Self.FK_Viatura_tb_Marca_tb" FromRole="Viatura_tb" ToRole="Marca_tb" />
+          <NavigationProperty Name="SaidaViatura_tb" Relationship="Self.FK_SaidaViatura_tb_Viatura_tb" FromRole="Viatura_tb" ToRole="SaidaViatura_tb" />
+          <NavigationProperty Name="Abastecimento_tb" Relationship="GesviaturasModel.FK_Abastecimento_tb_Viatura_tb" FromRole="Viatura_tb" ToRole="Abastecimento_tb" />
+        </EntityType>
+        <EntityType Name="View_CarroMarca">
+          <Key>
+            <PropertyRef Name="idMarca" />
+            <PropertyRef Name="idViaturas" />
+          </Key>
+          <Property Name="idMarca" Type="Int32" Nullable="false" />
+          <Property Name="idViaturas" Type="Int32" Nullable="false" />
+          <Property Name="NomeMarca" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ModeloViatura" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AnoFabrico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Matricula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="View_Saida">
+          <Key>
+            <PropertyRef Name="idSaida" />
+            <PropertyRef Name="idViaturas" />
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="idMarca" />
+          </Key>
+          <Property Name="idSaida" Type="Int32" Nullable="false" />
+          <Property Name="idViaturas" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idMarca" Type="Int32" Nullable="false" />
+          <Property Name="DataSaida" Type="DateTime" Precision="0" />
+          <Property Name="DataDevolucao" Type="DateTime" Precision="0" />
+          <Property Name="NomeCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NomeMarca" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ModeloViatura" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AnoFabrico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Matricula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Manutencao_tb_Cliente_tb">
+          <End Role="Cliente_tb" Type="Self.Cliente_tb" Multiplicity="0..1" />
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente_tb">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Manutencao_tb">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaViatura_tb_Cliente_tb">
+          <End Role="Cliente_tb" Type="Self.Cliente_tb" Multiplicity="0..1" />
+          <End Role="SaidaViatura_tb" Type="Self.SaidaViatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente_tb">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="SaidaViatura_tb">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntradaViatura_tb_SaidaViatura_tb">
+          <End Role="SaidaViatura_tb" Type="Self.SaidaViatura_tb" Multiplicity="0..1" />
+          <End Role="EntradaViatura_tb" Type="Self.EntradaViatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaidaViatura_tb">
+              <PropertyRef Name="idSaida" />
+            </Principal>
+            <Dependent Role="EntradaViatura_tb">
+              <PropertyRef Name="idSaida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FluidosManutencao_tb_Fluidos_tb">
+          <End Role="Fluidos_tb" Type="Self.Fluidos_tb" Multiplicity="0..1" />
+          <End Role="FluidosManutencao_tb" Type="Self.FluidosManutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fluidos_tb">
+              <PropertyRef Name="idFluido" />
+            </Principal>
+            <Dependent Role="FluidosManutencao_tb">
+              <PropertyRef Name="idFluido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viatura_tb_Fluidos_tb">
+          <End Role="Fluidos_tb" Type="Self.Fluidos_tb" Multiplicity="0..1" />
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fluidos_tb">
+              <PropertyRef Name="idFluido" />
+            </Principal>
+            <Dependent Role="Viatura_tb">
+              <PropertyRef Name="idFluido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FluidosManutencao_tb_Manutencao_tb">
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="0..1" />
+          <End Role="FluidosManutencao_tb" Type="Self.FluidosManutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Principal>
+            <Dependent Role="FluidosManutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manutencao_tb_Servicos_tb">
+          <End Role="Servicos_tb" Type="Self.Servicos_tb" Multiplicity="0..1" />
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicos_tb">
+              <PropertyRef Name="idServicos" />
+            </Principal>
+            <Dependent Role="Manutencao_tb">
+              <PropertyRef Name="idServico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PecasManutencao_tb_Manutencao_tb">
+          <End Role="Manutencao_tb" Type="Self.Manutencao_tb" Multiplicity="0..1" />
+          <End Role="PecasManutencao_tb" Type="Self.PecasManutencao_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Principal>
+            <Dependent Role="PecasManutencao_tb">
+              <PropertyRef Name="idManutencao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viatura_tb_Marca_tb">
+          <End Role="Marca_tb" Type="Self.Marca_tb" Multiplicity="0..1" />
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca_tb">
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="Viatura_tb">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaViatura_tb_Viatura_tb">
+          <End Role="Viatura_tb" Type="Self.Viatura_tb" Multiplicity="0..1" />
+          <End Role="SaidaViatura_tb" Type="Self.SaidaViatura_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viatura_tb">
+              <PropertyRef Name="idViaturas" />
+            </Principal>
+            <Dependent Role="SaidaViatura_tb">
+              <PropertyRef Name="idViatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GesviaturasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente_tb" EntityType="Self.Cliente_tb" />
+          <EntitySet Name="Empresa_tb" EntityType="Self.Empresa_tb" />
+          <EntitySet Name="EntradaViatura_tb" EntityType="Self.EntradaViatura_tb" />
+          <EntitySet Name="Fluidos_tb" EntityType="Self.Fluidos_tb" />
+          <EntitySet Name="FluidosManutencao_tb" EntityType="Self.FluidosManutencao_tb" />
+          <EntitySet Name="Manutencao_tb" EntityType="Self.Manutencao_tb" />
+          <EntitySet Name="Marca_tb" EntityType="Self.Marca_tb" />
+          <EntitySet Name="PecasManutencao_tb" EntityType="Self.PecasManutencao_tb" />
+          <EntitySet Name="SaidaViatura_tb" EntityType="Self.SaidaViatura_tb" />
+          <EntitySet Name="Servicos_tb" EntityType="Self.Servicos_tb" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario_tb" EntityType="Self.Usuario_tb" />
+          <EntitySet Name="Viatura_tb" EntityType="Self.Viatura_tb" />
+          <EntitySet Name="View_CarroMarca" EntityType="Self.View_CarroMarca" />
+          <EntitySet Name="View_Saida" EntityType="Self.View_Saida" />
+          <AssociationSet Name="FK_Manutencao_tb_Cliente_tb" Association="Self.FK_Manutencao_tb_Cliente_tb">
+            <End Role="Cliente_tb" EntitySet="Cliente_tb" />
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaViatura_tb_Cliente_tb" Association="Self.FK_SaidaViatura_tb_Cliente_tb">
+            <End Role="Cliente_tb" EntitySet="Cliente_tb" />
+            <End Role="SaidaViatura_tb" EntitySet="SaidaViatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntradaViatura_tb_SaidaViatura_tb" Association="Self.FK_EntradaViatura_tb_SaidaViatura_tb">
+            <End Role="SaidaViatura_tb" EntitySet="SaidaViatura_tb" />
+            <End Role="EntradaViatura_tb" EntitySet="EntradaViatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FluidosManutencao_tb_Fluidos_tb" Association="Self.FK_FluidosManutencao_tb_Fluidos_tb">
+            <End Role="Fluidos_tb" EntitySet="Fluidos_tb" />
+            <End Role="FluidosManutencao_tb" EntitySet="FluidosManutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viatura_tb_Fluidos_tb" Association="Self.FK_Viatura_tb_Fluidos_tb">
+            <End Role="Fluidos_tb" EntitySet="Fluidos_tb" />
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FluidosManutencao_tb_Manutencao_tb" Association="Self.FK_FluidosManutencao_tb_Manutencao_tb">
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+            <End Role="FluidosManutencao_tb" EntitySet="FluidosManutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manutencao_tb_Servicos_tb" Association="Self.FK_Manutencao_tb_Servicos_tb">
+            <End Role="Servicos_tb" EntitySet="Servicos_tb" />
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PecasManutencao_tb_Manutencao_tb" Association="Self.FK_PecasManutencao_tb_Manutencao_tb">
+            <End Role="Manutencao_tb" EntitySet="Manutencao_tb" />
+            <End Role="PecasManutencao_tb" EntitySet="PecasManutencao_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viatura_tb_Marca_tb" Association="Self.FK_Viatura_tb_Marca_tb">
+            <End Role="Marca_tb" EntitySet="Marca_tb" />
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaViatura_tb_Viatura_tb" Association="Self.FK_SaidaViatura_tb_Viatura_tb">
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+            <End Role="SaidaViatura_tb" EntitySet="SaidaViatura_tb" />
+          </AssociationSet>
+          <EntitySet Name="Abastecimento_tb" EntityType="GesviaturasModel.Abastecimento_tb" />
+          <AssociationSet Name="FK_Abastecimento_tb_Viatura_tb" Association="GesviaturasModel.FK_Abastecimento_tb_Viatura_tb">
+            <End Role="Viatura_tb" EntitySet="Viatura_tb" />
+            <End Role="Abastecimento_tb" EntitySet="Abastecimento_tb" />
+          </AssociationSet>
+          <EntitySet Name="View_Manutencao" EntityType="GesviaturasModel.View_Manutencao" />
+          <EntitySet Name="View_FluidosManutencao" EntityType="GesviaturasModel.View_FluidosManutencao" />
+          <EntitySet Name="View_Abastecimento" EntityType="GesviaturasModel.View_Abastecimento" />
+        </EntityContainer>
+        <EntityType Name="Abastecimento_tb">
+          <Key>
+            <PropertyRef Name="idAbastecimento" />
+          </Key>
+          <Property Name="idAbastecimento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVeiculo" Type="Int32" />
+          <Property Name="DataAbastecimento" Type="DateTime" Precision="0" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="Litros" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KmInicio" Type="Int64" />
+          <Property Name="KmFinais" Type="Int64" />
+          <Property Name="KmPercorridos" Type="Int64" />
+          <Property Name="Consumo" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PrecoLitro" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Viatura_tb" Relationship="GesviaturasModel.FK_Abastecimento_tb_Viatura_tb" FromRole="Abastecimento_tb" ToRole="Viatura_tb" />
+        </EntityType>
+        <Association Name="FK_Abastecimento_tb_Viatura_tb">
+          <End Type="GesviaturasModel.Viatura_tb" Role="Viatura_tb" Multiplicity="0..1" />
+          <End Type="GesviaturasModel.Abastecimento_tb" Role="Abastecimento_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viatura_tb">
+              <PropertyRef Name="idViaturas" />
+            </Principal>
+            <Dependent Role="Abastecimento_tb">
+              <PropertyRef Name="idVeiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_Manutencao">
+          <Key>
+            <PropertyRef Name="idServicos" />
+            <PropertyRef Name="idManutencao" />
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idServicos" Type="Int32" Nullable="false" />
+          <Property Name="NomeServico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idManutencao" Type="Int32" Nullable="false" />
+          <Property Name="idVeiculo" Type="Int32" />
+          <Property Name="TipoManutencao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="DataManutencao" Type="DateTime" Precision="0" />
+          <Property Name="KilometragemManutencao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ValorManutencao" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HoraInicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HoraFim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NivelTanque" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Observacoes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="NomeCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="View_FluidosManutencao">
+          <Key>
+            <PropertyRef Name="idFluidoManutencao" />
+            <PropertyRef Name="idFluido" />
+          </Key>
+          <Property Name="NomeFluido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnidadeMedida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idFluidoManutencao" Type="Int32" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" />
+          <Property Name="ValorUnitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="idManutencao" Type="Int32" />
+          <Property Name="idFluido" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_Abastecimento">
+          <Key>
+            <PropertyRef Name="idViaturas" />
+            <PropertyRef Name="idAbastecimento" />
+          </Key>
+          <Property Name="idViaturas" Type="Int32" Nullable="false" />
+          <Property Name="Matricula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NomeFluido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idAbastecimento" Type="Int32" Nullable="false" />
+          <Property Name="DataAbastecimento" Type="DateTime" Precision="0" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="Litros" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KmInicio" Type="Int64" />
+          <Property Name="KmFinais" Type="Int64" />
+          <Property Name="KmPercorridos" Type="Int64" />
+          <Property Name="Consumo" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PrecoLitro" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GesviaturasModelStoreContainer" CdmEntityContainer="GesviaturasEntities">
+          <EntitySetMapping Name="Cliente_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Cliente_tb">
+              <MappingFragment StoreEntitySet="Cliente_tb">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="NomeCliente" ColumnName="NomeCliente" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+                <ScalarProperty Name="RegistradoPor" ColumnName="RegistradoPor" />
+                <ScalarProperty Name="ActualizadoPor" ColumnName="ActualizadoPor" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="EnderecoResidencia" ColumnName="EnderecoResidencia" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Empresa_tb">
+              <MappingFragment StoreEntitySet="Empresa_tb">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Nuit" ColumnName="Nuit" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogoTipo" ColumnName="LogoTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntradaViatura_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.EntradaViatura_tb">
+              <MappingFragment StoreEntitySet="EntradaViatura_tb">
+                <ScalarProperty Name="idEntrada" ColumnName="idEntrada" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+                <ScalarProperty Name="RegistradoPor" ColumnName="RegistradoPor" />
+                <ScalarProperty Name="idSaida" ColumnName="idSaida" />
+                <ScalarProperty Name="ActualizadoPor" ColumnName="ActualizadoPor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fluidos_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Fluidos_tb">
+              <MappingFragment StoreEntitySet="Fluidos_tb">
+                <ScalarProperty Name="idFluido" ColumnName="idFluido" />
+                <ScalarProperty Name="NomeFluido" ColumnName="NomeFluido" />
+                <ScalarProperty Name="UnidadeMedida" ColumnName="UnidadeMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FluidosManutencao_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.FluidosManutencao_tb">
+              <MappingFragment StoreEntitySet="FluidosManutencao_tb">
+                <ScalarProperty Name="idFluidoManutencao" ColumnName="idFluidoManutencao" />
+                <ScalarProperty Name="idFluido" ColumnName="idFluido" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="idManutencao" ColumnName="idManutencao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manutencao_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Manutencao_tb">
+              <MappingFragment StoreEntitySet="Manutencao_tb">
+                <ScalarProperty Name="idManutencao" ColumnName="idManutencao" />
+                <ScalarProperty Name="idVeiculo" ColumnName="idVeiculo" />
+                <ScalarProperty Name="idServico" ColumnName="idServico" />
+                <ScalarProperty Name="TipoManutencao" ColumnName="TipoManutencao" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="DataManutencao" ColumnName="DataManutencao" />
+                <ScalarProperty Name="KilometragemManutencao" ColumnName="KilometragemManutencao" />
+                <ScalarProperty Name="ValorManutencao" ColumnName="ValorManutencao" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFim" ColumnName="HoraFim" />
+                <ScalarProperty Name="NivelTanque" ColumnName="NivelTanque" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Marca_tb">
+              <MappingFragment StoreEntitySet="Marca_tb">
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="NomeMarca" ColumnName="NomeMarca" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+                <ScalarProperty Name="RegistradoPor" ColumnName="RegistradoPor" />
+                <ScalarProperty Name="ActualizadoPor" ColumnName="ActualizadoPor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PecasManutencao_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.PecasManutencao_tb">
+              <MappingFragment StoreEntitySet="PecasManutencao_tb">
+                <ScalarProperty Name="idPeca" ColumnName="idPeca" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="idManutencao" ColumnName="idManutencao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaidaViatura_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.SaidaViatura_tb">
+              <MappingFragment StoreEntitySet="SaidaViatura_tb">
+                <ScalarProperty Name="idSaida" ColumnName="idSaida" />
+                <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
+                <ScalarProperty Name="DataDevolucao" ColumnName="DataDevolucao" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+                <ScalarProperty Name="RegistradoPor" ColumnName="RegistradoPor" />
+                <ScalarProperty Name="ActualizadoPor" ColumnName="ActualizadoPor" />
+                <ScalarProperty Name="Diasdealerta" ColumnName="Diasdealerta" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idViatura" ColumnName="idViatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicos_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Servicos_tb">
+              <MappingFragment StoreEntitySet="Servicos_tb">
+                <ScalarProperty Name="idServicos" ColumnName="idServicos" />
+                <ScalarProperty Name="NomeServico" ColumnName="NomeServico" />
+                <ScalarProperty Name="DescricaoServico" ColumnName="DescricaoServico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GesviaturasModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Usuario_tb">
+              <MappingFragment StoreEntitySet="Usuario_tb">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="NomeCompleto" ColumnName="NomeCompleto" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Viatura_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Viatura_tb">
+              <MappingFragment StoreEntitySet="Viatura_tb">
+                <ScalarProperty Name="idViaturas" ColumnName="idViaturas" />
+                <ScalarProperty Name="ModeloViatura" ColumnName="ModeloViatura" />
+                <ScalarProperty Name="AnoFabrico" ColumnName="AnoFabrico" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+                <ScalarProperty Name="RegistradoPor" ColumnName="RegistradoPor" />
+                <ScalarProperty Name="ActualizadoPor" ColumnName="ActualizadoPor" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="idFluido" ColumnName="idFluido" />
+                <ScalarProperty Name="KmCadastro" ColumnName="KmCadastro" />
+                <ScalarProperty Name="DestinoUso" ColumnName="DestinoUso" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="EstadoViatura" ColumnName="EstadoViatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_CarroMarca">
+            <EntityTypeMapping TypeName="GesviaturasModel.View_CarroMarca">
+              <MappingFragment StoreEntitySet="View_CarroMarca">
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="idViaturas" ColumnName="idViaturas" />
+                <ScalarProperty Name="NomeMarca" ColumnName="NomeMarca" />
+                <ScalarProperty Name="ModeloViatura" ColumnName="ModeloViatura" />
+                <ScalarProperty Name="AnoFabrico" ColumnName="AnoFabrico" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Saida">
+            <EntityTypeMapping TypeName="GesviaturasModel.View_Saida">
+              <MappingFragment StoreEntitySet="View_Saida">
+                <ScalarProperty Name="idSaida" ColumnName="idSaida" />
+                <ScalarProperty Name="idViaturas" ColumnName="idViaturas" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
+                <ScalarProperty Name="DataDevolucao" ColumnName="DataDevolucao" />
+                <ScalarProperty Name="NomeCliente" ColumnName="NomeCliente" />
+                <ScalarProperty Name="NomeMarca" ColumnName="NomeMarca" />
+                <ScalarProperty Name="ModeloViatura" ColumnName="ModeloViatura" />
+                <ScalarProperty Name="AnoFabrico" ColumnName="AnoFabrico" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Abastecimento_tb">
+            <EntityTypeMapping TypeName="GesviaturasModel.Abastecimento_tb">
+              <MappingFragment StoreEntitySet="Abastecimento_tb">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PrecoLitro" ColumnName="PrecoLitro" />
+                <ScalarProperty Name="Consumo" ColumnName="Consumo" />
+                <ScalarProperty Name="KmPercorridos" ColumnName="KmPercorridos" />
+                <ScalarProperty Name="KmFinais" ColumnName="KmFinais" />
+                <ScalarProperty Name="KmInicio" ColumnName="KmInicio" />
+                <ScalarProperty Name="Litros" ColumnName="Litros" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="DataAbastecimento" ColumnName="DataAbastecimento" />
+                <ScalarProperty Name="idVeiculo" ColumnName="idVeiculo" />
+                <ScalarProperty Name="idAbastecimento" ColumnName="idAbastecimento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Manutencao">
+            <EntityTypeMapping TypeName="GesviaturasModel.View_Manutencao">
+              <MappingFragment StoreEntitySet="View_Manutencao">
+                <ScalarProperty Name="NomeCliente" ColumnName="NomeCliente" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="NivelTanque" ColumnName="NivelTanque" />
+                <ScalarProperty Name="HoraFim" ColumnName="HoraFim" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="ValorManutencao" ColumnName="ValorManutencao" />
+                <ScalarProperty Name="KilometragemManutencao" ColumnName="KilometragemManutencao" />
+                <ScalarProperty Name="DataManutencao" ColumnName="DataManutencao" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="TipoManutencao" ColumnName="TipoManutencao" />
+                <ScalarProperty Name="idVeiculo" ColumnName="idVeiculo" />
+                <ScalarProperty Name="idManutencao" ColumnName="idManutencao" />
+                <ScalarProperty Name="NomeServico" ColumnName="NomeServico" />
+                <ScalarProperty Name="idServicos" ColumnName="idServicos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_FluidosManutencao">
+            <EntityTypeMapping TypeName="GesviaturasModel.View_FluidosManutencao">
+              <MappingFragment StoreEntitySet="View_FluidosManutencao">
+                <ScalarProperty Name="idFluido" ColumnName="idFluido" />
+                <ScalarProperty Name="idManutencao" ColumnName="idManutencao" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="idFluidoManutencao" ColumnName="idFluidoManutencao" />
+                <ScalarProperty Name="UnidadeMedida" ColumnName="UnidadeMedida" />
+                <ScalarProperty Name="NomeFluido" ColumnName="NomeFluido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Abastecimento">
+            <EntityTypeMapping TypeName="GesviaturasModel.View_Abastecimento">
+              <MappingFragment StoreEntitySet="View_Abastecimento">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PrecoLitro" ColumnName="PrecoLitro" />
+                <ScalarProperty Name="Consumo" ColumnName="Consumo" />
+                <ScalarProperty Name="KmPercorridos" ColumnName="KmPercorridos" />
+                <ScalarProperty Name="KmFinais" ColumnName="KmFinais" />
+                <ScalarProperty Name="KmInicio" ColumnName="KmInicio" />
+                <ScalarProperty Name="Litros" ColumnName="Litros" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="DataAbastecimento" ColumnName="DataAbastecimento" />
+                <ScalarProperty Name="idAbastecimento" ColumnName="idAbastecimento" />
+                <ScalarProperty Name="NomeFluido" ColumnName="NomeFluido" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="idViaturas" ColumnName="idViaturas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

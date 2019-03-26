@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a73e36efc0cd466298606ba00a6ec5aa" Name="Diagram1">
+        <EntityTypeShape EntityType="GesviaturasModel.Cliente_tb" Width="1.5" PointX="1.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Empresa_tb" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.EntradaViatura_tb" Width="1.5" PointX="13.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Fluidos_tb" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.FluidosManutencao_tb" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Manutencao_tb" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Marca_tb" Width="1.5" PointX="3.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.PecasManutencao_tb" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.SaidaViatura_tb" Width="1.5" PointX="11.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Servicos_tb" Width="1.5" PointX="1.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Usuario_tb" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.Viatura_tb" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.View_CarroMarca" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GesviaturasModel.View_Saida" Width="1.5" PointX="5.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="GesviaturasModel.FK_Manutencao_tb_Cliente_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_SaidaViatura_tb_Cliente_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_EntradaViatura_tb_SaidaViatura_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_FluidosManutencao_tb_Fluidos_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_Viatura_tb_Fluidos_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_FluidosManutencao_tb_Manutencao_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_Manutencao_tb_Servicos_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_PecasManutencao_tb_Manutencao_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_Viatura_tb_Marca_tb" ManuallyRouted="false" />
+        <AssociationConnector Association="GesviaturasModel.FK_SaidaViatura_tb_Viatura_tb" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GesviaturasModel.Abastecimento_tb" Width="1.5" PointX="8.625" PointY="6.25" />
+        <AssociationConnector Association="GesviaturasModel.FK_Abastecimento_tb_Viatura_tb" />
+        <EntityTypeShape EntityType="GesviaturasModel.View_Manutencao" Width="1.5" PointX="8.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GesviaturasModel.View_FluidosManutencao" Width="1.5" PointX="11.375" PointY="10.75" />
+        <EntityTypeShape EntityType="GesviaturasModel.View_Abastecimento" Width="1.5" PointX="12.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
